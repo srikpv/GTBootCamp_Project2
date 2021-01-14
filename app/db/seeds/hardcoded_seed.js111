@@ -1,0 +1,23 @@
+exports.seed = function(knex, Promise) {
+  // Deletes ALL existing entries
+    return knex('player').insert([
+      {
+        id: 1,
+        name: 'Sri',
+        country: 'India',
+        dob: "10/01/1900"
+      },
+      {
+        id: 2,
+        name: 'Sri1',
+        country: 'India',
+        dob: "10/01/1900"
+      },
+      {
+        id: 3,
+        name: 'Sri2',
+        country: 'India',
+        dob: "10/01/1900"
+      }
+    ]);
+};
