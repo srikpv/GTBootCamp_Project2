@@ -2,10 +2,10 @@ const csv = require('csv-parser');
 const fs = require('fs');
 const path = require("path");
 
-let players = [];
-let players_subset = [];
-
 var fileRead = _ => {
+  let players = [];
+  let players_subset = [];
+
   return new Promise((resolve, reject) => {
     fs.createReadStream(path.resolve(__dirname, './Players.csv') )
     .pipe(csv())

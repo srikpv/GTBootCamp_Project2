@@ -1,0 +1,208 @@
+http://localhost:3000/api/new/user
+{ 
+    "username": "Srikanth", 
+    "password": "12345678"
+}
+
+
+http://localhost:3000/api/new/team
+{
+    "team": {
+        "user_id" : 1,
+        "name" : "Terminator",
+        "players" : [
+            {
+                "player_id": 1
+                },
+                {
+                "player_id": 2
+                },
+                {
+                "player_id": 3
+                },
+                {
+                "player_id": 4
+                },
+                {
+                "player_id": 5
+                },
+                {
+                "player_id": 6
+                },
+                {
+                "player_id": 7
+                },
+                {
+                "player_id": 8
+                },
+                {
+                "player_id": 9
+                },
+                {
+                "player_id": 10
+                },
+                {
+                "player_id": 11
+                }
+        ]
+    }
+}
+
+http://localhost:3000/api/new/game
+{
+    "home_team_id" : 2,
+    "opp_team_id" : 3
+}
+
+http://localhost:3000/api/team/2
+{
+    "team": {
+        "id": 2,
+        "user_id": 1,
+        "name": "Terminator",
+        "active": 1,
+        "wins": 0,
+        "players": [
+            {
+                "id": 1,
+                "team_id": 2,
+                "player_id": 1,
+                "score": 2,
+                "player": {
+                    "id": 1,
+                    "name": "Abhinav Mukund",
+                    "country": "India",
+                    "dob": "6/1/1990"
+                }
+            },
+            {
+                "id": 2,
+                "team_id": 2,
+                "player_id": 2,
+                "score": 1,
+                "player": {
+                    "id": 2,
+                    "name": "Abul Hasan",
+                    "country": "Bangladesh",
+                    "dob": "5/8/1992"
+                }
+            },
+            {
+                "id": 3,
+                "team_id": 2,
+                "player_id": 3,
+                "score": 5,
+                "player": {
+                    "id": 3,
+                    "name": "Adam Dibble",
+                    "country": "England",
+                    "dob": "9/3/1991"
+                }
+            },
+            {
+                "id": 4,
+                "team_id": 2,
+                "player_id": 4,
+                "score": 5,
+                "player": {
+                    "id": 4,
+                    "name": "Afsar Zazai",
+                    "country": "Afghanistan",
+                    "dob": "10/8/1993"
+                }
+            },
+            {
+                "id": 5,
+                "team_id": 2,
+                "player_id": 5,
+                "score": 4,
+                "player": {
+                    "id": 5,
+                    "name": "Akila Dananjaya",
+                    "country": "Sri Lanka",
+                    "dob": "4/10/1993"
+                }
+            },
+            {
+                "id": 6,
+                "team_id": 2,
+                "player_id": 6,
+                "score": 5,
+                "player": {
+                    "id": 6,
+                    "name": "Babar Hayat",
+                    "country": "Pakistan",
+                    "dob": "5/1/1992"
+                }
+            },
+            {
+                "id": 7,
+                "team_id": 2,
+                "player_id": 7,
+                "score": 2,
+                "player": {
+                    "id": 7,
+                    "name": "Ben Cooper",
+                    "country": "Australia",
+                    "dob": "10/2/1992"
+                }
+            },
+            {
+                "id": 8,
+                "team_id": 2,
+                "player_id": 8,
+                "score": 7,
+                "player": {
+                    "id": 8,
+                    "name": "Ben Stokes",
+                    "country": "New Zealand",
+                    "dob": "4/6/1991"
+                }
+            },
+            {
+                "id": 9,
+                "team_id": 2,
+                "player_id": 9,
+                "score": 6,
+                "player": {
+                    "id": 9,
+                    "name": "Beuran Hendricks",
+                    "country": "South Africa",
+                    "dob": "8/6/1990"
+                }
+            },
+            {
+                "id": 10,
+                "team_id": 2,
+                "player_id": 10,
+                "score": 0,
+                "player": {
+                    "id": 10,
+                    "name": "Bhuvneshwar Kumar",
+                    "country": "India",
+                    "dob": "5/2/1990"
+                }
+            },
+            {
+                "id": 11,
+                "team_id": 2,
+                "player_id": 11,
+                "score": 9,
+                "player": {
+                    "id": 11,
+                    "name": "Chris Jones",
+                    "country": "England",
+                    "dob": "5/11/1990"
+                }
+            }
+        ],
+        "games": [
+            {
+                "id": 1,
+                "home_team_id": 2,
+                "opp_team_id": 3,
+                "win_team_id": 3
+            }
+        ]
+    }
+}
