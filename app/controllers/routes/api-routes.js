@@ -13,6 +13,18 @@ module.exports = function(app) {
   app.get("/api/all/players", (request, response) => {
       Player.query().then(players => response.json({ players }));
     });
+  
+  app.get("/api/all/teams", (request, response) => {
+      Team.query().then(teams => response.json({ teams }));
+    });
+
+  app.get("/api/top10/players", async (request, response) => {
+    const teamPlayers = await TeamPlayer.query()
+      .withGraphJoined('[player]')
+      .limit(10)
+      .orderBy("score");
+    response.json({ top10: teamPlayers});
+    });
 
   app.post("/api/new/user", async (request, response) => {
     const user = await User.query().insert({
@@ -33,6 +45,11 @@ module.exports = function(app) {
   app.get("/api/team/:id", async (request, response) => {
     const team = await Team.query().findById(request.params.id).withGraphJoined('[players.player, games]');
     response.json({ team: team});
+  });
+
+  app.get("/api/game/:id", async (request, response) => {
+    const game = await Game.query().findById(request.params.id).withGraphJoined('[home_team_players.player, opp_team_players.player]');
+    response.json({ game: game});
   });
 
   app.put("/api/new/game", async (request, response) => {
@@ -77,21 +94,4 @@ module.exports = function(app) {
       response.json({ game: game});
   });
 
-  // app.put("/api/:id", function (req, res) {
-  //   let id = req.params.id;
-
-  //   Burger.devour_burger(id);
-  //   res.sendStatus(200);
-  // });
-
-  // // If a user sends data to add a new character...
-  // app.post("/api/add", function(req, res) {
-
-  //   // Take the request...
-  //   var name = req.body.name;
-
-  //   // Then send it to the ORM to "save" into the DB.
-  //   Burger.add_burger(name);
-  //   res.sendStatus(200);
-  // });
 };

@@ -20,7 +20,30 @@ class Game extends Model {
         win_team_id : {type: "integer"}
       }
     }
-  } 
+  }
+  
+  static get relationMappings() {
+    const TeamPlayer = require("./TeamPlayer.js");
+
+    return {
+      home_team_players: {
+        relation: Model.HasManyRelation,
+        modelClass: TeamPlayer,
+        join: {
+          from: "team_player.team_id",
+          to: "game.home_team_id"
+        },
+      },
+      opp_team_players: {
+        relation: Model.HasManyRelation,
+        modelClass: TeamPlayer,
+        join: {
+          from: "team_player.team_id",
+          to: "game.opp_team_id"
+        },
+      }
+    }
+  }
 }
 
 module.exports = Game;

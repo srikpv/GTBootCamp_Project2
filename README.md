@@ -13,6 +13,8 @@ NODE_ENV=development
 
 npm i
 
+CREATE DATABASE `dream11`;
+
 cd app/db
 knex migrate:latest
 knex seed:run
