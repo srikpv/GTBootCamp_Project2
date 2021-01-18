@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- nav items -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="createTeam.html">Create a Team</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="gameHistory.html">Game history</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+
+<h1>Game Page</h1>
+<div class="row">
+  <div class="column">
+    <h2>Home Team: {{game.home_team_id}}</h2>
+      <ul>
+        {{#each game.home_team_players}}
+            <li>
+            {{this.player_id}} {{this.player.name}}
+        {{/each}}
+      </ul>
+  </div>
+
+  <div class="column">
+    <h2>Home Team Score</h2>
+      <ul>
+        {{#each game.home_team_players}}
+            <li>
+            {{this.score}}
+        {{/each}}
+      </ul>
+  </div>
+  
+  <div class="column">
+    <h2>Visiting Team: {{game.opp_team_id}}</h2>
+    <ul>
+      {{#each game.opp_team_players}}
+          <li>
+          {{this.player_id}} {{this.player.name}}
+      {{/each}}
+    </ul>
+  </div>
+
+  <div class="column">
+    <h2>Visiting Team Score</h2>
+    <ul>
+      {{#each game.opp_team_players}}
+          <li>
+          {{this.score}}
+      {{/each}}
+    </ul>
+  </div>
+
+</div>
