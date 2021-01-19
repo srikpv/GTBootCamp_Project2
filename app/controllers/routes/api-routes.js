@@ -91,7 +91,7 @@ module.exports = function(app) {
       win_team_id: ((home_score.totalScore >= opp_score.totalScore) ? home_team_id : opp_team_id)
       });
     
-      response.json({ game: game});
+      response.json({ game_id: game.id});
   });
 
 };
