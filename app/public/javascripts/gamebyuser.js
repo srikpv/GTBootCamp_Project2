@@ -30,8 +30,8 @@ $(document).ready(function() {
         });
       }
        
-      function getuserTeams() {
-        $.get("http://localhost:3000/api/all/teams", function(data) {
+      function getuserTeams(id) {
+        $.get("http://localhost:3000/api/all/teams/" + id , function(data) {
           // data = data.filter(team => team.user_id = parseInt($userdropdown.val()));
         console.log(data);
         var $option = $("#team-list");      
@@ -41,8 +41,8 @@ $(document).ready(function() {
         })
       }
 
-      function getuserGames() {
-        $.get("http://localhost:3000/api/all/games", function(data) {
+      function getuserGames(id) {
+        $.get("http://localhost:3000/api/all/games/" + id, function(data) {
           console.log(data);
           var rowsToAdd = [];
           for (var i = 0; i < data.games.length; i++) {
@@ -56,8 +56,10 @@ $(document).ready(function() {
       function createGameRow(gameData) {
         var newTr = $("<tr>");
         newTr.data("game", gameData);
-        newTr.append("<td>" + gameData.home_team_id + "</td>");
-        newTr.append("<td>" + gameData.opp_team_id + "</td>");
+        // newTr.append("<td>" + gameData.home_team_id + "</td>");
+        newTr.append("<td>" + gameData.home_team.name + "</td>");
+        // newTr.append("<td>" + gameData.opp_team_id + "</td>");
+        newTr.append("<td>" + gameData.opp_team.name + "</td>");
         newTr.append("<td>" + gameData.win_team_id + "</td>");
         return newTr;    
       }
@@ -75,8 +77,8 @@ $(document).ready(function() {
 
       function renderEmpty() {
         var alertDiv = $("<div>");
-        alertDiv.addClass("alert alert-danger");
-        alertDiv.text("No Games Played Yet, Check in Later !!!");
+        alertDiv.addClass("alert alert-info");
+        alertDiv.text("No Home Games Played Yet, Check in Later !!!");
         gameContainer.append(alertDiv);
       }    
 });
