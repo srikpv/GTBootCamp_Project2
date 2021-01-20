@@ -70,10 +70,12 @@ module.exports = function(app) {
 
   app.get("/api/game/:id", async (request, response) => {
     const game = await Game.query().findById(request.params.id).withGraphJoined('[home_team_players.player, opp_team_players.player]');
-    response.json({ game: game});
+//    response.json({ game: game});
+    response.render("game", {game: game});
   });
 
-  app.put("/api/new/game", async (request, response) => {
+  app.put("/api/new/game/", async (request, response) => {
+    console.log ("home team", request.body);
     const home_team_id = request.body.home_team_id;
     const opp_team_id = request.body.opp_team_id;
 
@@ -112,7 +114,8 @@ module.exports = function(app) {
       win_team_id: ((home_score.totalScore >= opp_score.totalScore) ? home_team_id : opp_team_id)
       });
     
-      response.json({ game_id: game.id});
+      response.json({ game: game});
+//      response.render("game", {game: game});
   });
 
 };
