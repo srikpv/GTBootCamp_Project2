@@ -16,6 +16,12 @@ module.exports = function(app) {
   
   app.get("/api/all/teams", (request, response) => {
       Team.query().then(teams => response.json({ teams }));
+  });
+
+  app.get("/api/all/users", (request, response) => {
+      User.query()
+          .withGraphJoined('[teams]')
+          .then(users => response.json({ users }));
     });
 
   app.get("/api/all/teams/:user_id", (request, response) => {
