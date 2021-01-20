@@ -60,7 +60,13 @@ $(document).ready(function() {
         newTr.append("<td>" + gameData.home_team.name + "</td>");
         // newTr.append("<td>" + gameData.opp_team_id + "</td>");
         newTr.append("<td>" + gameData.opp_team.name + "</td>");
-        newTr.append("<td>" + gameData.win_team_id + "</td>");
+        // newTr.append("<td>" + gameData.win_team_id + "</td>");
+        if (gameData.home_team_id === gameData.win_team_id){
+         newTr.append("<td>" + gameData.home_team.name + "</td>"); 
+        }
+        else {
+         newTr.append("<td>" + gameData.opp_team.name + "</td>"); 
+        }
         return newTr;    
       }
 
