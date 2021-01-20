@@ -16,6 +16,27 @@ module.exports = function(app) {
   
   app.get("/api/all/teams", (request, response) => {
       Team.query().then(teams => response.json({ teams }));
+  });
+
+  app.get("/api/all/users", (request, response) => {
+      User.query()
+          .withGraphJoined('[teams]')
+          .then(users => response.json({ users }));
+    });
+
+  app.get("/api/all/teams/:user_id", (request, response) => {
+      const user_id = request.params.user_id;
+      Team.query()
+      .where("user_id", "=", user_id)
+      .then(teams => response.json({ teams }));
+    });
+  
+  app.get("/api/all/games/:home_team_id", (request, response) => {
+      const home_team_id = request.params.home_team_id;
+      Game.query()
+      .where("home_team_id", "=", home_team_id)
+      .withGraphJoined('[home_team, opp_team]')
+      .then(games => response.json({ games }));
     });
 
   app.get("/api/top10/players", async (request, response) => {
