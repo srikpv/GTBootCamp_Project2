@@ -12,11 +12,13 @@ $(function() {
         opp_team_id: opp_team_id
       };
       $.ajax("/api/new/game/", {
-        type: "PUT",
-        data: gameData
+        type: 'PUT',
+        url: '/api/new/game',
+        contentType: 'application/json',
+        data: JSON.stringify(gameData),
       }).then(
         function(response) {
-            console.log("response id", response.game.id);
+          console.log(response);
             id = response.game.id;
             window.location.href = "/api/game/"+id;
         }
