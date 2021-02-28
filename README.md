@@ -4,8 +4,15 @@ cd Project2
 
 git clone https://github.com/srikpv/GTBootCamp_Project2
 
+cd app
 
-Create .env file in config with following values (add username and password)
+mkdir config 
+
+cd config
+
+touch .env file
+
+Add the following items
 
 DATABASE=dream11
 
