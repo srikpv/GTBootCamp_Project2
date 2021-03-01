@@ -12,13 +12,14 @@ class Player extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required : ["name", "country", "dob"],
+      required : ["name", "country", "dob", "cost"],
 
       properties: {
         id : {type: "integer"},
         name : {type : "string", minLength: 1, maxLength: 255 },
         country : {type : "string", minLength: 1, maxLength: 50 },
-        dob : {type : "string", minLength: 8, maxLength: 10 }
+        dob : {type : "string", minLength: 8, maxLength: 10 },
+        cost : {type : "integer" }
       }
     }
   }
