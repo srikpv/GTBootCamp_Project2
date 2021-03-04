@@ -70,8 +70,7 @@ module.exports = function(app) {
 
   app.get("/api/game/:id", async (request, response) => {
     const game = await Game.query().findById(request.params.id).withGraphJoined('[home_team_players.player, opp_team_players.player]');
-//    response.json({ game: game});
-    response.render("game", {game: game});
+    response.json({ game: game});
   });
 
   app.put("/api/new/game/", async (request, response) => {
