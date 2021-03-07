@@ -13,6 +13,13 @@ module.exports = function(app) {
   app.get("/api/all/players", (request, response) => {
       Player.query().then(players => response.json({ players }));
     });
+
+  app.get("/api/player/:id", (request, response) => {
+      const id = request.params.id;
+      Player.query()
+      .where("id", "=", id)
+      .then(player => response.json({ player }));
+    });
   
   app.get("/api/all/teams", (request, response) => {
       Team.query().then(teams => response.json({ teams }));
