@@ -39,6 +39,21 @@ module.exports = function(app) {
       .where("user_id", "=", user_id)
       .then(teams => response.json({ teams }));
     });
+
+  app.get("/api/all/teams_wins/:user_id", async (request, response) => {
+      const user_id = request.params.user_id;
+      var teams = await Team.query()
+                .where("user_id", "=", user_id);
+        for( var i = 0; i < teams.length; i++){
+            let games = await Game.query()
+                      .where(builder => builder.where('home_team_id', '=', teams[i].id).orWhere('opp_team_id', '=', teams[i].id))
+              teams[i].TotalGames = games.length;
+              teams[i].HomeGames = games.filter(game => game.home_team_id === teams[i].id).length;
+              teams[i].AwayGames = games.filter(game => game.opp_team_id === teams[i].id).length;
+              teams[i].Wins = games.filter(game => game.win_team_id === teams[i].id).length;
+        }
+        await response.json({teams});
+    });
   
   app.get("/api/all/games/:home_team_id", (request, response) => {
       const home_team_id = request.params.home_team_id;
