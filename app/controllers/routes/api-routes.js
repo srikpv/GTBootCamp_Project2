@@ -50,7 +50,7 @@ module.exports = function(app) {
               teams[i].TotalGames = games.length;
               teams[i].HomeGames = games.filter(game => game.home_team_id === teams[i].id).length;
               teams[i].AwayGames = games.filter(game => game.opp_team_id === teams[i].id).length;
-              teams[i].Wins = games.filter(game => game.win_team_id === teams[i].id).length;
+              teams[i].TotalWins = games.filter(game => game.win_team_id === teams[i].id).length;
         }
         await response.json({teams});
     });
