@@ -1,0 +1,7 @@
+PUT http://localhost:5000/api/new/game
+content-type: application/json
+
+{
+    "home_team_id" : 2,
+    "opp_team_id" : 3
+}

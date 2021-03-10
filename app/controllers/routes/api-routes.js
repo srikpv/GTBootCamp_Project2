@@ -33,6 +33,26 @@ module.exports = function(app) {
           .then(users => response.json({ users }));
     });
 
+  app.get("/api/user/:user_name", (request, response) => {
+      const user_name = request.params.user_name;
+      User.query()
+      .where("username", "=", user_name)
+      .then(async user => {
+        if(user.length == 0){
+          const new_user = await User.query().insert({
+            username: user_name,
+            password: '00000000'
+          });
+          const user_json = [{"id": new_user.id,
+                "username": new_user.username,
+                "password": new_user.password}]
+          await response.json({'user' : user_json});
+        }
+        else
+          response.json({user});
+      });
+    });
+
   app.get("/api/all/teams/:user_id", (request, response) => {
       const user_id = request.params.user_id;
       Team.query()
@@ -98,7 +118,6 @@ module.exports = function(app) {
   });
 
   app.put("/api/new/game/", async (request, response) => {
-    console.log ("home team", request.body);
     const home_team_id = request.body.home_team_id;
     const opp_team_id = request.body.opp_team_id;
 
@@ -131,10 +150,11 @@ module.exports = function(app) {
       .select(raw('coalesce(sum(??), 0)', 'score').as('totalScore'))
       .where("team_id", "=", opp_team_id);
     
+   
     const game = await Game.query().insert({
       home_team_id: home_team_id,
       opp_team_id: opp_team_id,
-      win_team_id: ((home_score.totalScore >= opp_score.totalScore) ? home_team_id : opp_team_id)
+      win_team_id: ((home_score[0].totalScore >= opp_score[0].totalScore) ? home_team_id : opp_team_id)
       });
     
       response.json({ game: game});
